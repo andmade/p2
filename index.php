@@ -16,23 +16,39 @@
     <script src="https://code.jquery.com/jquery-2.2.3.min.js" type="text/javascript"></script>
     <script src="js/vendor/foundation.min.js"></script>
 
-    <?php require 'generator.php' ?>
+    <?php require "generator.php" ?>
 </head>
 
 <body>
 
-    <form method='POST' action='index.php'>
-        Enter number of words
-        <br>
-        <input type="number" name="passwordLength" min="1" max="5">
+    <?php
+        if ($_POST) {
+            echo '<pre>';
+            echo htmlspecialchars(print_r($_POST, true));
+            echo '</pre>';
+        };
+    ?>
 
-        <input type='submit' value='OBJECTION!'>
-        <br>
-    </form>
+        <form method='POST' action='index.php'>
+            Enter number of words
+            <br>
+            <input type="number" name="passwordLength" min="1" max="5">
+            <br/>
 
-    <h1>
-    Your password is <?php echo implode("-", $passwordGenerated) ?>.
-    </h1>
+            <!--Arcana Selectors-->
+            <input type="checkbox" name="arcana[]" value="fool">Fool
+            <br />
+            <input type="checkbox" name="arcana[]" value="magician">Magician
+            <br />
+
+            <input type='submit' value='Generate!'>
+            <br>
+        </form>
+
+        <h1>
+            Your password is <?php echo implode("-", $passwordGenerated) ?>.
+        </h1>
+
 
 </body>
 

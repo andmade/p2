@@ -1,13 +1,13 @@
 <?php
 
 $wordlist = [
-    "we", "the", "people", "in", "order", "to", "form", "a", "more", "perfect", "union", "establish", "justice", "ensure", "domestic", "tranquility", "provide", "for", "common", "defense", "promote", "general", "welfare", "and", "blessings", "of", "liberty", "ourselves", "our", "posterity", "do", "ordain", "this", "Constitution", "United", "States", "America"
-];
+    "we", "the", "people", "in", "order", "to", "form", "a", "more", "perfect", "union", "establish", "justice", "ensure", "domestic", "tranquility", "provide", "for", "common", "defense", "promote", "general", "welfare", "and", "blessings", "of", "liberty", "ourselves", "our", "posterity", "do", "ordain", "this", "Constitution", "United", "States", "America",
+  ];
 
 #Word Lists
 
 $foolList = [
-    "Orpheus", 
+    "Orpheus",
     "Slime",
     "Legion",
     "BlackFrost",
@@ -249,16 +249,29 @@ $aeonList = [
     "Metatron",
 ];
 
+$arcanaList = [
+    "fool" => $foolList,
+    "magician" => $magicianList,
+    "priestess" => $priestessList,
+    "empress" => $empressList,
+    "emperor" => $emperorList,
+    "hierophant" => $hierophantList,
+];
 
 
 $wordlistLength = count($wordlist);
+$passwordGenerated = [];
 
 $passwordLength = 0;
 if (isset($_POST["passwordLength"])) {
     $passwordLength = $_POST["passwordLength"];
-}
-$passwordGenerated = [];
 
-for($i = 1; $i <= $passwordLength; $i++) {
-    $passwordGenerated[] = $wordlist[mt_rand(0,$wordlistLength-1)];
+    echo '<pre>';
+    echo htmlspecialchars(print_r($_POST["arcana"], true));
+    echo '</pre>';
+
+
+    for($i = 1; $i <= $passwordLength; $i++) {
+        $passwordGenerated[] = $wordlist[mt_rand(0,$wordlistLength-1)];
+    };
 };
