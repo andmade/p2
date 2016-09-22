@@ -166,6 +166,16 @@ $hangedList = [
     "Attis",
 ];
 
+$deathList = [
+    "Ghoul",
+    "PaleRider",
+    "Loa",
+    "Samael",
+    "Mot",
+    "Alice",
+    "Thanatos"
+];
+
 $temperanceList = [
     "NigiMitama",
     "Mithra",
@@ -256,6 +266,22 @@ $arcanaList = [
     "empress" => $empressList,
     "emperor" => $emperorList,
     "hierophant" => $hierophantList,
+    "lovers" => $loversList,
+    "chariot" => $chariotList,
+    "justice" => $justiceList,
+    "hermit" => $hermitList,
+    "fortune" => $fortuneList,
+    "strength" => $fortuneList,
+    "hanged" => $hangedList,
+    "death" => $deathList,
+    "temperance" => $temperanceList,
+    "devil" => $devilList,
+    "tower" => $towerList,
+    "star" => $starList,
+    "moon" => $moonList,
+    "sun" => $sunList,
+    "judgement" => $judgeList,
+    "aeon" => $aeonList,
 ];
 
 
@@ -266,12 +292,12 @@ $passwordLength = 0;
 if (isset($_POST["passwordLength"])) {
     $passwordLength = $_POST["passwordLength"];
 
-    echo '<pre>';
-    echo htmlspecialchars(print_r($_POST["arcana"], true));
-    echo '</pre>';
 
 
     for($i = 1; $i <= $passwordLength; $i++) {
-        $passwordGenerated[] = $wordlist[mt_rand(0,$wordlistLength-1)];
+        
+        $currentArcana = $arcanaList[$_POST["arcana"][mt_rand(0, count($_POST["arcana"]) - 1)]];
+        
+        $passwordGenerated[] = $currentArcana[mt_rand(0,count($currentArcana)-1)];
     };
 };

@@ -16,38 +16,37 @@
     <script src="https://code.jquery.com/jquery-2.2.3.min.js" type="text/javascript"></script>
     <script src="js/vendor/foundation.min.js"></script>
 
-    <?php require "generator.php" ?>
+    <?php require "generator.php"; ?>
 </head>
 
 <body>
 
-    <?php
-        if ($_POST) {
-            echo '<pre>';
-            echo htmlspecialchars(print_r($_POST, true));
-            echo '</pre>';
-        };
+    <?php 
+        if ($_POST) { 
+            echo '<pre>'; echo htmlspecialchars(print_r($_POST, true)); 
+            echo '</pre>'; }; 
     ?>
 
-        <form method='POST' action='index.php'>
-            Enter number of words
-            <br>
-            <input type="number" name="passwordLength" min="1" max="5">
-            <br/>
+    <form method='POST' action='index.php'>
+        Enter number of words
+        <br>
+        <input type="number" name="passwordLength" min="1" max="5">
+        <br/>
 
-            <!--Arcana Selectors-->
-            <input type="checkbox" name="arcana[]" value="fool">Fool
-            <br />
-            <input type="checkbox" name="arcana[]" value="magician">Magician
-            <br />
+        <!--Arcana Checkboxes-->
+        <?php foreach($arcanaList as $key=> $value): ?>
 
-            <input type='submit' value='Generate!'>
-            <br>
-        </form>
+            <input type="checkbox" checked name="arcana[]" value=<?=$key?>>
+                <?=ucfirst($key)?>
+            </input>
+        <?php endforeach; ?>
+                    
+        <input type='submit' value='Generate!'>
+    </form>
 
-        <h1>
-            Your password is <?php echo implode("-", $passwordGenerated) ?>.
-        </h1>
+    <h1>
+        Your password is <?php echo implode("-", $passwordGenerated) ?>.
+    </h1>
 
 
 </body>
