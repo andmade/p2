@@ -14,7 +14,7 @@ $foolList = [
     "Ose",
     "Decarabia",
     "Loki",
-    "Susano-o",
+    "SusanoO",
     "OrpheusTelos",
 ];
 
@@ -241,7 +241,6 @@ $sunList = [
     "Vishnu",
     "Asura"
 ];
-
 $judgeList = [
     "Anubis",
     "Trumpeter",
@@ -251,7 +250,7 @@ $judgeList = [
     "Messiah",
 ];
 
-$aeonList = [
+$theworldList = [
     "Uriel",
     "Nidhoggr",
     "Ananta",
@@ -260,44 +259,55 @@ $aeonList = [
 ];
 
 $arcanaList = [
-    "fool" => $foolList,
-    "magician" => $magicianList,
-    "priestess" => $priestessList,
-    "empress" => $empressList,
-    "emperor" => $emperorList,
-    "hierophant" => $hierophantList,
-    "lovers" => $loversList,
-    "chariot" => $chariotList,
-    "justice" => $justiceList,
-    "hermit" => $hermitList,
-    "fortune" => $fortuneList,
-    "strength" => $fortuneList,
-    "hanged" => $hangedList,
-    "death" => $deathList,
-    "temperance" => $temperanceList,
-    "devil" => $devilList,
-    "tower" => $towerList,
-    "star" => $starList,
-    "moon" => $moonList,
-    "sun" => $sunList,
-    "judgement" => $judgeList,
-    "aeon" => $aeonList,
+    "Fool" => $foolList,
+    "Magician" => $magicianList,
+    "Priestess" => $priestessList,
+    "Empress" => $empressList,
+    "Emperor" => $emperorList,
+    "Hierophant" => $hierophantList,
+    "Lovers" => $loversList,
+    "Chariot" => $chariotList,
+    "Justice" => $justiceList,
+    "Hermit" => $hermitList,
+    "Fortune" => $fortuneList,
+    "Strength" => $fortuneList,
+    "Hanged" => $hangedList,
+    "Death" => $deathList,
+    "Temperance" => $temperanceList,
+    "Devil" => $devilList,
+    "Tower" => $towerList,
+    "Star" => $starList,
+    "Moon" => $moonList,
+    "Sun" => $sunList,
+    "Judgement" => $judgeList,
+    "The World" => $theworldList,
 ];
+
+$symbols = ["#","@","&", "*", "%"];
 
 
 $wordlistLength = count($wordlist);
 $passwordGenerated = [];
-
 $passwordLength = 0;
+
 if (isset($_POST["passwordLength"])) {
     $passwordLength = $_POST["passwordLength"];
 
 
 
     for($i = 1; $i <= $passwordLength; $i++) {
-        
         $currentArcana = $arcanaList[$_POST["arcana"][mt_rand(0, count($_POST["arcana"]) - 1)]];
-        
         $passwordGenerated[] = $currentArcana[mt_rand(0,count($currentArcana)-1)];
     };
+        
+    if (isset($_POST["includeNumber"])) {
+        $passwordGenerated[] = strval(mt_rand(0,9));
+    }
+
+    if (isset($_POST["includeSymbol"])) {
+        $passwordGenerated[] = $symbols[(mt_rand(0,count($symbols)-1))];
+    }
+    
+    shuffle($passwordGenerated);
+    
 };
