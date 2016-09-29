@@ -8,7 +8,7 @@ the user wants in their password. An option is also included to include a symbol
 <http://p2.andmade.me>
 
 #Screencast
-<http://www.screencast.com/t/VYcc0FJOa9>
+<http://screencast.com/t/BRu4qjvLfB> (Jing cut me off at 5 minutes and I couldn't edit it, but I was basically done at 4:58 seconds anyway. ^_^)
 
 #Resources
 + **Foundation Framework** - <http://foundation.zurb.com/>
