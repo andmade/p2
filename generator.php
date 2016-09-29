@@ -1,9 +1,5 @@
 <?php
 
-$wordlist = [
-    "we", "the", "people", "in", "order", "to", "form", "a", "more", "perfect", "union", "establish", "justice", "ensure", "domestic", "tranquility", "provide", "for", "common", "defense", "promote", "general", "welfare", "and", "blessings", "of", "liberty", "ourselves", "our", "posterity", "do", "ordain", "this", "Constitution", "United", "States", "America",
-  ];
-
 #Word Lists
 
 $foolList = [
@@ -250,7 +246,7 @@ $judgeList = [
     "Messiah",
 ];
 
-$theworldList = [
+$worldList = [
     "Uriel",
     "Nidhoggr",
     "Ananta",
@@ -280,21 +276,17 @@ $arcanaList = [
     "Moon" => $moonList,
     "Sun" => $sunList,
     "Judgement" => $judgeList,
-    "The World" => $theworldList,
+    "World" => $worldList,
 ];
 
 $symbols = ["#","@","&", "*", "%"];
 
-
-$wordlistLength = count($wordlist);
 $passwordGenerated = [];
-$passwordLength = 0;
+$numWordsErr = $noArcanaErr = "";
 
-if (isset($_POST["passwordLength"])) {
+if (!empty($_POST["passwordLength"]) && (intval($_POST["passwordLength"]) < 6) && isset($_POST["arcana"])) {
     $passwordLength = $_POST["passwordLength"];
-
-
-
+    
     for($i = 1; $i <= $passwordLength; $i++) {
         $currentArcana = $arcanaList[$_POST["arcana"][mt_rand(0, count($_POST["arcana"]) - 1)]];
         $passwordGenerated[] = $currentArcana[mt_rand(0,count($currentArcana)-1)];
@@ -310,4 +302,17 @@ if (isset($_POST["passwordLength"])) {
     
     shuffle($passwordGenerated);
     
-};
+}   
+
+if (empty($_POST["passwordLength"]) && isset($_POST["passwordLength"])){
+    $numWordsErr = "Please select a number 1-5";
+}   
+
+if (isset($_POST["passwordLength"]) && !(intval($_POST["passwordLength"]) < 6)) {
+    $numWordsErr = "Please select a number 1-5";
+}   
+
+if (isset($_POST["passwordLength"]) && !isset($_POST["arcana"])){
+    $noArcanaErr = "You must select at least 1 arcana";
+}; 
+
